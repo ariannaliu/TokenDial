@@ -14,6 +14,9 @@
   <img src="assets/teaser.gif" alt="teaser">
 </p>
 
+### TL;DR: We turn pretrained text-to-video models into continuous video editors, enabling slider-style control over appearance and motion magnitude.
+We present TokenDial, a framework for continuous, slider-style attribute control in pretrained text-to-video generation models. While modern generators produce strong holistic videos, they offer limited control over how much an attribute changes (e.g., effect intensity or motion magnitude) without drifting identity, background, or temporal coherence. TokenDial is built on the observation: additive offsets in the intermediate spatiotemporal visual patch-token space form a semantic control direction, where adjusting the offset magnitude yields coherent, predictable edits for both appearance and motion dynamics. We learn attribute-specific token offsets without retraining the backbone, using pretrained understanding signals: semantic direction matching for appearance and motion-magnitude scaling for motion.
+
 
 ## TODOs
 
