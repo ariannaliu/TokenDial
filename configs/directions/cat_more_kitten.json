@@ -1,0 +1,14 @@
+{
+  "direction_prompts": [
+    "a baby kitten",
+    "a very young cat",
+    "a newborn cat"
+  ],
+  "neg_direction_prompts": [
+    "a very old cat",
+    "an elderly cat"
+  ],
+  "base_prompts": [
+    "a video of a cat"
+  ]
+}

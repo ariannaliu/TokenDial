@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tokendial"
+version = "0.1.0"
+description = "TokenDial: continuous attribute sliders for video diffusion via a learnable per-layer token."
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision",
+    "transformers",
+    "imageio",
+    "imageio[ffmpeg]",
+    "safetensors",
+    "einops",
+    "sentencepiece",
+    "protobuf",
+    "modelscope",
+    "ftfy",
+    "pandas",
+    "accelerate",
+    "peft",
+    "pyyaml",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+# TRAINING-only extras (InternVideo2 appearance loss + DINOv2 motion loss).
+# Inference and V2V do not need these.
+[project.optional-dependencies]
+train = [
+    "timm==0.5.4",
+    "opencv-python",
+    "decord",
+    "scipy",
+    "huggingface_hub",
+]
+
+[tool.setuptools.packages.find]
+where = ["./"]
+include = ["tokendial", "tokendial.*", "diffsynth", "diffsynth.*", "feature_losses", "feature_losses.*"]
+
+[tool.setuptools]
+include-package-data = true

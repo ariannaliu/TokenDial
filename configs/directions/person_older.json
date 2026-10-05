@@ -1,0 +1,27 @@
+{
+  "direction_prompts": [
+    "older person",
+    "very old person",
+    "elderly person",
+    "senior person",
+    "aged person"
+  ],
+  "neg_direction_prompts": [
+    "younger person",
+    "very young person",
+    "young person"
+  ],
+  "base_prompts": [
+    "a person",
+    "a human",
+    "a human being"
+  ],
+  "orthogonal_anchor_pairs": [
+    ["heavy person", "thin person"],
+    ["very heavy person", "very thin person"],
+    ["fat person", "thin person"],
+    ["overweight person", "underweight person"]
+  ],
+  "orthogonalize_strength": 1.0,
+  "orthogonalize_rcond": 0.001
+}

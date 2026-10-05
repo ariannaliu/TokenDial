@@ -1,0 +1,39 @@
+# TokenDial appearance slider — training recipe.
+#
+# Only the per-layer rgb_token is trained (the DiT is frozen), supervised by an
+# InternVideo2 feature loss. The edit DIRECTION (what the slider does) is a
+# separate JSON passed with --direction; see configs/directions/.
+#
+#   accelerate launch -m tokendial.train --config configs/appearance.yaml \
+#       --direction configs/directions/person_older.json
+#
+# Any field here can be overridden on the command line.
+
+task: tokendial:appearance
+
+# Base model (Wan2.1-T2V-1.3B; auto-downloads from HuggingFace on first run).
+model_id_with_origin_paths: "Wan-AI/Wan2.1-T2V-1.3B:diffusion_pytorch_model*.safetensors,Wan-AI/Wan2.1-T2V-1.3B:models_t5_umt5-xxl-enc-bf16.pth,Wan-AI/Wan2.1-T2V-1.3B:Wan2.1_VAE.pth"
+
+# Dataset (generate with `python -m tokendial.datagen`).
+dataset_base_path: data/appearance/train
+dataset_metadata_path: data/appearance/metadata.csv
+height: 480
+width: 832
+num_frames: 17
+dataset_repeat: 2
+
+# Optimization.
+learning_rate: 5.0e-4
+num_epochs: 2
+rgb_token_weight: 1.0
+output_path: ./runs/appearance/my_slider
+
+# InternVideo2 appearance loss.
+internvideo:
+  loss_weight: 1.0
+  guidance_method: text          # text | video
+  # Downloaded by `python -m tokendial.download_weights` to this path:
+  pretrained_path: weights/internvideo2/InternVideo2-stage2_1b-224p-f4.pt
+  config_path: feature_losses/internvideo2/demo/internvideo2_stage2_config.py
+  # Default edit direction; override with `--direction path/to/direction.json`.
+  direction: configs/directions/person_older.json

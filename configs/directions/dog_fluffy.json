@@ -1,0 +1,17 @@
+{
+  "direction_prompts": [
+    "a dog with very long fur",
+    "a dog with long fluffy coat",
+    "a dog with extremely long hair"
+  ],
+  "neg_direction_prompts": [
+    "a dog with very short fur",
+    "a dog with a closely shaved coat",
+    "a dog with minimal short hair"
+  ],
+  "base_prompts": [
+    "a video of a dog",
+    "a video of a furry dog",
+    "a video of a dog standing"
+  ]
+}

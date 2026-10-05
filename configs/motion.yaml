@@ -1,0 +1,36 @@
+# TokenDial motion slider — training recipe.
+#
+# Only the per-layer rgb_token is trained (the DiT is frozen), supervised by a
+# DINOv2 feature-flow loss that controls motion speed. The first latent frame is
+# left un-injected (identity anchor) automatically. DINOv2 is loaded by name via
+# torch.hub, so there is no checkpoint path to configure.
+#
+#   accelerate launch -m tokendial.train --config configs/motion.yaml
+
+task: tokendial:motion
+
+# Base model (Wan2.1-T2V-1.3B; auto-downloads from HuggingFace on first run).
+model_id_with_origin_paths: "Wan-AI/Wan2.1-T2V-1.3B:diffusion_pytorch_model*.safetensors,Wan-AI/Wan2.1-T2V-1.3B:models_t5_umt5-xxl-enc-bf16.pth,Wan-AI/Wan2.1-T2V-1.3B:Wan2.1_VAE.pth"
+
+# Dataset (generate with `python -m tokendial.datagen`).
+dataset_base_path: data/motion/train
+dataset_metadata_path: data/motion/metadata.csv
+height: 384
+width: 672
+num_frames: 33
+dataset_repeat: 1
+
+# Optimization.
+learning_rate: 1.0e-4
+num_epochs: 2
+rgb_token_weight: 1.0
+output_path: ./runs/motion/my_slider
+
+# DINOv2 motion loss.
+dino:
+  loss_weight: 1.0
+  model_name: dinov2_vitl14
+  num_keyframes: 32
+  fast_ratio: 0.5
+  stride: 1
+  firstframe_reg_weight: 0.0

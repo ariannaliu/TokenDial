@@ -1,0 +1,23 @@
+# Core (inference + V2V + training)
+torch>=2.0.0
+torchvision
+transformers
+imageio
+imageio[ffmpeg]
+safetensors
+einops
+sentencepiece
+protobuf
+modelscope
+ftfy
+pandas
+accelerate
+peft
+pyyaml
+
+# Training only (InternVideo2 appearance loss + DINOv2 motion loss).
+timm==0.5.4
+opencv-python
+decord
+scipy
+huggingface_hub

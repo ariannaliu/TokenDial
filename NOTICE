@@ -1,0 +1,43 @@
+TokenDial
+=========
+
+This repository is released under the Apache License 2.0 (see LICENSE).
+
+It builds on and vendors code from the following open-source projects, whose
+licenses and copyrights are retained by their respective authors:
+
+- DiffSynth-Studio (ModelScope Team), Apache License 2.0
+  The `diffsynth/` package is a trimmed fork containing only the components
+  required for Wan2.1-T2V-1.3B plus the TokenDial additions
+  (per-layer rgb_token, rgb_cfg_scale guidance, and the TokenDial losses).
+  https://github.com/modelscope/DiffSynth-Studio
+
+- InternVideo2 (OpenGVLab)
+  The `feature_losses/internvideo2/` directory is a trimmed vendored copy used
+  only for the appearance feature loss during training.
+  https://github.com/OpenGVLab/InternVideo
+
+- Wan2.1 (Wan-AI / Alibaba) — the base text-to-video diffusion model.
+
+The FlowEdit V2V method is adapted from:
+  "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+  Kulikov et al., ICCV 2025. https://arxiv.org/abs/2412.08629
+
+DINOv2 (Meta AI) is fetched at runtime via torch.hub for the motion loss.
+
+Demo videos
+-----------
+
+The video-to-video demo inputs in `assets/demo_videos/` are third-party stock
+footage from Vecteezy (https://www.vecteezy.com). They are not covered by the
+Apache License of this repository and remain subject to Vecteezy's license
+terms; credit goes to their creators:
+
+- cat_real.mp4: "Red cat looking around outdoor"
+  https://www.vecteezy.com/video/29214016-red-cat-looking-around-outdoor
+
+- man_real.mp4: "Young caucasian man in profile city street bokeh
+  lights contemplative mood during evening rush hour urban lifestyle perspective"
+  https://www.vecteezy.com/video/72175010-young-caucasian-man-in-profile-city-street-bokeh-lights-contemplative-mood-during-evening-rush-hour-urban-lifestyle-perspective
+
+`assets/examples/v2v_kitten_sweep.*` are edited versions of cat_real.mp4.

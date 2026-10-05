@@ -1,0 +1,16 @@
+{
+  "direction_prompts": [
+    "an asian man",
+    "asian man",
+    "asian person"
+  ],
+  "neg_direction_prompts": [
+    "a western man",
+    "an american man",
+    "american person",
+    "western person"
+  ],
+  "base_prompts": [
+    "a video of a man"
+  ]
+}

@@ -1,0 +1,39 @@
+# Training outputs & generated data
+/runs/
+/outputs/
+/data/
+*.log
+
+# Downloaded model weights (large): InternVideo2 -> weights/, Wan2.1 auto-download -> models/
+# (anchored with "/" so the source dirs diffsynth/models/ etc. stay tracked)
+/weights/
+/models/
+
+# Checkpoints: ship the small demo sliders under checkpoints/, ignore other weights
+*.safetensors
+!checkpoints/*.safetensors
+*.pth
+*.pt
+*.ckpt
+*.bin
+
+# Videos: keep the bundled demo clips and example outputs
+*.mp4
+!assets/demo_videos/*.mp4
+!assets/examples/*.mp4
+
+# Attention-mask / debug visualizations
+**/mask_vis/
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Editor / OS
+.vscode/
+.idea/
+*.DS_Store
